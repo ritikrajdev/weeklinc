@@ -8,6 +8,11 @@ INSTALLED_APPS = [
     'api.docs'
 ]
 
+REST_FRAMEWORK = {
+    ...
+    'DEFAULT_SCHEMA_CLASS': 'api.docs.schemas.AutoSchema'
+}
+
 
 API_DOCS = {
     "title": "Descriptive title for the schema definition.",
