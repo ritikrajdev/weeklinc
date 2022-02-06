@@ -15,6 +15,8 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
+from . import __version__
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -142,4 +144,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
     ],
+}
+
+API_DOCS = {
+    'title': 'Weeklinc API',
+    'version': __version__,
+    'urlconf': 'api.urls',
+    'url': '/api/',
 }
