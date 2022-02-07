@@ -5,7 +5,6 @@ inherit from (APITestCase, ModelAPITestCase)
 
 override test_<view.method> for any model to skip or create any custom test
 """
-from django.db.models import Model
 from rest_framework import status
 from django.contrib.auth import get_user_model
 from rest_framework.test import APITestCase
@@ -25,7 +24,6 @@ class ModelAPITest:
     override test_<view.method> for any model to skip or create any custom test
     """
     data: dict
-    model: Model
     path: str
 
     # From APITestCase
@@ -48,7 +46,6 @@ class ModelAPITest:
         self.assertDictContainsSubset(data, response.data)
 
     def test_delete(self):
-        model = self.__class__.model
         data = self.__class__.data
         path = self.__class__.path
 
@@ -67,7 +64,6 @@ class ModelAPITest:
         )
 
     def test_retrieve(self):
-        model = self.__class__.model
         data = self.__class__.data
         path = self.__class__.path
 

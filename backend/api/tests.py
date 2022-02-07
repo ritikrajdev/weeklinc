@@ -1,3 +1,11 @@
-from django.test import TestCase
+from django.shortcuts import reverse
+from rest_framework.test import APITestCase
 
-# Create your tests here.
+from .generics.test import ModelAPITest
+
+
+class ScheduleTestCase(ModelAPITest, APITestCase):
+    data = {
+        'name': 'sch'
+    }
+    path = reverse('schedule-list')
