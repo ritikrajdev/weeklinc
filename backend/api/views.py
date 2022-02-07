@@ -1,9 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
-from .permissions import IsOwner
 from .serializers import MeetSerializer, ScheduleSerializer
-from .models import Meet
 
 
 class ScheduleViewSet(ModelViewSet):
@@ -15,6 +13,12 @@ class ScheduleViewSet(ModelViewSet):
 
 
 class MeetViewSet(ModelViewSet):
-    queryset = Meet.objects.all()
     serializer_class = MeetSerializer
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        meets = []
+        for schedule in self.request.user.schedules.all():
+            for meet in schedule.meets.all():
+                meets.append(meet)
+        return meets
