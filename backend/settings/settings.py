@@ -147,9 +147,15 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'api.docs.schemas.AutoSchema',
 }
 
+# Api Doc Generation
 API_DOCS = {
     'title': 'Weeklinc API',
     'version': __version__,
     'urlconf': 'api.urls',
     'url': '/api/',
 }
+
+# DATETIME Input for Api
+DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S']
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
+TIME_INPUT_FORMATS = ['%H:%M', '%H:%M:%S']
