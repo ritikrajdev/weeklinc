@@ -53,7 +53,7 @@ class Meet(models.Model):
 
     start_datetime = models.DateTimeField(
         verbose_name=_('start datetime'),
-        help_text=_('current week\'s start datetime for this meet in format %s' %
+        help_text=_('current week\'s start datetime [UTC] for this meet in format %s' %
                     settings.DATETIME_INPUT_FORMATS[0]),
 
         validators=[datetime_in_current_week_validator]
@@ -61,7 +61,7 @@ class Meet(models.Model):
 
     end_datetime = models.DateTimeField(
         verbose_name=_('end datetime'),
-        help_text=_('current week\'s end datetime for this meet in format %s' %
+        help_text=_('current week\'s end datetime [UTC] for this meet in format %s' %
                     settings.DATETIME_INPUT_FORMATS[0]),
 
         validators=[datetime_in_current_week_validator]
