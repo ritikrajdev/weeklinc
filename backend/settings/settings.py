@@ -45,11 +45,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
+    'drf_spectacular',
 
     'users',
     'api',
     'api.auth',
-    'api.docs'
 ]
 
 MIDDLEWARE = [
@@ -145,7 +145,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.SessionAuthentication'
     ],
-    'DEFAULT_SCHEMA_CLASS': 'api.docs.schemas.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
         'rest_framework.filters.OrderingFilter',
@@ -153,11 +153,12 @@ REST_FRAMEWORK = {
 }
 
 # Api Doc Generation
-API_DOCS = {
-    'title': 'Weeklinc API',
-    'version': __version__,
-    'urlconf': 'api.urls',
-    'url': '/api/',
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Weeklinc API',
+    'DESCRIPTION': 'One Link for all you weekly scheduled meetings',
+    'VERSION': __version__,
+    'SERVE_URLCONF': 'api.urls',
+    'SCHEMA_PATH_PREFIX': '/api/',
 }
 
 # DATETIME Input for Api
