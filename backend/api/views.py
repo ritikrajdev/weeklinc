@@ -9,12 +9,16 @@ from rest_framework.viewsets import ModelViewSet
 
 from .models import Meet, Schedule
 from .serializers import MeetSerializer, ScheduleSerializer
+from .decorators import apply_filters
 
 
 class ScheduleViewSet(ModelViewSet):
     serializer_class = ScheduleSerializer
     permission_classes = [IsAuthenticated]
+    ordering_fields = ['name']
+    filterset_fields = ordering_fields
 
+    @apply_filters
     def get_queryset(self):
         return self.request.user.schedules.all()
 
@@ -22,7 +26,10 @@ class ScheduleViewSet(ModelViewSet):
 class MeetViewSet(ModelViewSet):
     serializer_class = MeetSerializer
     permission_classes = [IsAuthenticated]
+    ordering_fields = ['name', 'start_datetime', 'end_datetime']
+    filterset_fields = ordering_fields + ['schedule']
 
+    @apply_filters
     def get_queryset(self):
         return Meet.objects.filter(schedule__in=self.request.user.schedules.all())
 

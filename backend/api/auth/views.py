@@ -11,5 +11,8 @@ class AuthUserAPIView(CreateAPIView, RetrieveUpdateDestroyAPIView):
     serializer_class = UserSerializer
     permission_classes = [AuthUserPermission]
 
+    # No Filtering Required
+    filter_backends = None
+
     def get_object(self):
         return User.objects.get(username=self.request.user.username)
