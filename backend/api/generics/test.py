@@ -5,10 +5,9 @@ inherit from (APITestCase, ModelAPITestCase)
 
 override test_<view.method> for any model to skip or create any custom test
 """
-from rest_framework import status
 from django.contrib.auth import get_user_model
+from rest_framework import status
 from rest_framework.test import APITestCase
-
 
 User = get_user_model()
 USER = {

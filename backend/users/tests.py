@@ -1,8 +1,7 @@
-from django.test import TestCase
 from django.contrib.auth.hashers import check_password
+from django.test import TestCase
 
 from .models import User
-
 
 USER = {
     'username': 'tester',

@@ -1,12 +1,12 @@
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
-
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
+from .filtersets import MeetFilterSet
 from .models import Meet, Schedule
 from .serializers import MeetSerializer, MeetURLSerializer, ScheduleSerializer
 
@@ -27,7 +27,8 @@ class MeetViewSet(ModelViewSet):
     serializer_class = MeetSerializer
     permission_classes = [IsAuthenticated]
     ordering_fields = ['name', 'start_datetime', 'end_datetime']
-    filterset_fields = ordering_fields + ['schedule']
+    # filterset_fields = ordering_fields + ['schedule']
+    filterset_class = MeetFilterSet
 
     def get_queryset(self):
         return Meet.objects.filter(schedule__in=self.request.user.schedules.all())

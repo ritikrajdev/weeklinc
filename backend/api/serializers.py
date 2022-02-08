@@ -30,5 +30,6 @@ class MeetSerializer(serializers.ModelSerializer):
         model = Meet
         fields = '__all__'
 
+
 class MeetURLSerializer(serializers.Serializer):
     url = serializers.URLField(read_only=True)

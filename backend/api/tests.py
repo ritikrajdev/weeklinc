@@ -1,11 +1,10 @@
-from django.utils import timezone
 from django.shortcuts import reverse
-from rest_framework.test import APITestCase
+from django.utils import timezone
 from rest_framework import status
+from rest_framework.test import APITestCase
 
-from .models import Schedule, Meet
-from .generics.test import ModelAPITest, USER, User
-
+from .generics.test import USER, ModelAPITest, User
+from .models import Meet, Schedule
 
 SCHEDULE = {
     'name': 'sch'
