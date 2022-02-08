@@ -83,6 +83,8 @@ class Meet(models.Model):
 
         if hasattr(self, 'schedule') and self.schedule is not None:
             for meet in self.schedule.meets.all():
+                if meet.name == self.name:
+                    continue
                 if (meet.start_datetime < self.start_datetime < meet.end_datetime) or \
                         (meet.start_datetime < self.end_datetime < meet.end_datetime):
                     raise ValidationError(
