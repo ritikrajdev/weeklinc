@@ -38,7 +38,7 @@ class MeetViewSet(ModelViewSet):
 class MeetURLAPIView(APIView):
     serializer_class = MeetURLSerializer
 
-    def get(request, username, schedule_name, format=None):
+    def get(self, request, username, schedule_name, format=None):
         """
         Obtain meet ongoing link from username and schedule_name.
         URL will be an empty string if no meeting exists at that time.
