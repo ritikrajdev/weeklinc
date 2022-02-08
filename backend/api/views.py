@@ -32,7 +32,7 @@ def meet_url(request, username, schedule_name, format=None):
     """
     Obtain meet link from username and schedule_name
     returns {
-        'url': <url>
+        'url': [url]
     }
 
     url will be an empty string if no meeting exists at that time.
