@@ -8,7 +8,7 @@ class MeetSchedulePrimaryKeyRelatedField(serializers.PrimaryKeyRelatedField):
     def get_queryset(self):
         if self.context['request'].user.is_authenticated:
             return self.context['request'].user.schedules.all()
-        return []
+        return Schedule.objects.none()
 
 
 # Serializers
