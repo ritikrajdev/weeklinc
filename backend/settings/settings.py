@@ -29,7 +29,7 @@ SECRET_KEY = environ.get(
     'DJANGO_SECRET_KEY', 'django-insecure-&0grw=cxe+uibqcg+7f)#14^4cte#9=ee*u+c@84=no^g1=l(g')
 DEBUG = environ.get('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = environ.get('DJANGO_ALLOWED_HOSTS', '*').split(';')
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'corsheaders',
     'rest_framework',
     'rest_framework.authtoken',
     'django_filters',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -164,3 +166,12 @@ SPECTACULAR_SETTINGS = {
 DATETIME_INPUT_FORMATS = ['%Y-%m-%d %H:%M', '%Y-%m-%d %H:%M:%S']
 DATE_INPUT_FORMATS = ['%Y-%m-%d']
 TIME_INPUT_FORMATS = ['%H:%M', '%H:%M:%S']
+
+# Route Ending with /
+APPEND_SLASH = False
+
+# CORS Headers
+CORS_ALLOWED_ORIGINS = environ.get(
+    'DJANGO_CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(';')
+CSRF_TRUSTED_ORIGINS = environ.get(
+    'DJANGO_CSRF_TRUSTED_ORIGINS', 'http://localhost:3000').split(';')
