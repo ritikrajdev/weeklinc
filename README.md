@@ -10,6 +10,3 @@ You can check the Backend in the backend Directory.
 * api - Consists of Main API Specifications
 * api.auh - Consists of Authentication Mechanisms for the api
 * api.generics - Consists of Generic Implementation for api
-
-## Frontend
-It is Currently under Development.
